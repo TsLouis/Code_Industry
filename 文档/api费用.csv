@@ -1,0 +1,25 @@
+model,context_length,input_price_rmb,output_price_rmb,notes
+GLM-3-Turbo,未知,1元/百万tokens,,
+GLM-4,未知,100元/百万tokens,,支持视觉功能
+GLM-4-Flash,未知,0,,免费调用
+moonshot-v1-8k,8K,12元/百万tokens,,
+moonshot-v1-32k,32K,24元/百万tokens,,
+moonshot-v1-128k,128K,60元/百万tokens,,"128K超长上下文"
+DeepSeek-V3,未知,"0.5元/百万tokens(缓存命中);2元/百万tokens(未命中)",8元/百万tokens,
+Doubao-lite-4k,4K,0.29元/百万tokens,0.58元/百万tokens,
+Doubao-lite-32k,32K,0.29元/百万tokens,0.58元/百万tokens,
+Doubao-lite-128k,128K,0.79元/百万tokens,1.01元/百万tokens,
+Doubao-pro-4k,4K,0.79元/百万tokens,2.02元/百万tokens,
+Doubao-pro-32k,32K,0.79元/百万tokens,2.02元/百万tokens,
+Doubao-pro-128k,128K,4.97元/百万tokens,8.93元/百万tokens,
+claude-3-haiku,未知,0.0108元/千tokens,0.054元/千tokens,"1000 RPM限流,最新上线"
+claude-3-sonnet,未知,0.0324元/千tokens,0.162元/千tokens,"1000 RPM限流,最新上线"
+claude-3-sonnet-latest,未知,0.0324元/千tokens,0.162元/千tokens,"1000 RPM限流,最新上线"
+gpt-4o-mini,未知,0.00162元/千tokens,0.00648元/千tokens,"1000 RPM,性价比最高的GPT4"
+gpt-3.5-turbo,未知,0.0054元/千tokens,0.0162元/千tokens,"1000 RPM,稳定可靠"
+text-embedding-3-small,未知,0.000216元/千tokens,0.000216元/千tokens,"1000 RPM,轻量级向量模型"
+gpt-4o-audio-preview,未知,0.027元/千tokens,0.108元/千tokens,"100 RPM,音频处理专用"
+whisper-1,未知,0,0.0000648元/千tokens,"100 RPM,语音转文本"
+gpt-4-32k,32K,0.648元/千tokens,1.296元/千tokens,"200 RPM,最大上下文长度"
+gpt-4-turbo,未知,0.108元/千tokens,0.324元/千tokens,"500 RPM,最新GPT4"
+o1-2024-12-17,未知,0.162元/千tokens,0.648元/千tokens,"500 RPM,性能最强"
