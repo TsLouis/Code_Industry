@@ -1,0 +1,14 @@
+[
+  {
+    "timestamp": "2025-01-03T20:18:09.211794",
+    "sender": "CoordinatorAgent",
+    "receiver": "Developer",
+    "type": "task",
+    "content": "贪吃蛇"
+  },
+  {
+    "timestamp": "2025-01-03T20:21:09.228312",
+    "type": "error",
+    "content": "Response timeout"
+  }
+]

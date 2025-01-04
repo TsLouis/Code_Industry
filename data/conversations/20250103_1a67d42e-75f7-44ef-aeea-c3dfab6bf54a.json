@@ -1,0 +1,14 @@
+[
+  {
+    "timestamp": "2025-01-03T20:09:04.553714",
+    "sender": "CoordinatorAgent",
+    "receiver": "Developer",
+    "type": "task",
+    "content": "贪吃蛇小游戏"
+  },
+  {
+    "timestamp": "2025-01-03T20:12:04.560384",
+    "type": "error",
+    "content": "Response timeout"
+  }
+]

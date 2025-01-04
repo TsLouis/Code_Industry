@@ -1,0 +1,9 @@
+[
+  {
+    "timestamp": "2025-01-03T20:22:08.757541",
+    "sender": "CoordinatorAgent",
+    "receiver": "Developer",
+    "type": "task",
+    "content": "贪吃蛇"
+  }
+]

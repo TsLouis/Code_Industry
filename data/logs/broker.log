@@ -1,0 +1,68 @@
+2025-01-02 23:03:46,265 - MessageBroker - INFO - 消息代理启动
+2025-01-02 23:03:47,280 - MessageBroker - INFO - Agent Coordinator 订阅消息
+2025-01-02 23:03:47,280 - MessageBroker - INFO - Agent Product Manager 订阅消息
+2025-01-02 23:03:47,281 - MessageBroker - INFO - Agent Developer 订阅消息
+2025-01-02 23:03:56,764 - MessageBroker - DEBUG - 发布消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-02 23:03:56,767 - MessageBroker - DEBUG - 收到消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-02 23:06:56,771 - MessageBroker - INFO - 正在停止消息代理...
+2025-01-03 19:58:14,688 - MessageBroker - INFO - 消息代理启动
+2025-01-03 19:58:15,698 - MessageBroker - INFO - Agent Coordinator 订阅消息
+2025-01-03 19:58:15,699 - MessageBroker - INFO - Agent Product Manager 订阅消息
+2025-01-03 19:58:15,699 - MessageBroker - INFO - Agent Developer 订阅消息
+2025-01-03 19:58:45,061 - MessageBroker - DEBUG - 发布消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 19:58:45,062 - MessageBroker - DEBUG - 收到消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:01:45,070 - MessageBroker - INFO - 正在停止消息代理...
+2025-01-03 20:04:05,706 - MessageBroker - INFO - 消息代理启动
+2025-01-03 20:04:06,722 - MessageBroker - INFO - Agent Coordinator 订阅消息
+2025-01-03 20:04:06,723 - MessageBroker - INFO - Agent Product Manager 订阅消息
+2025-01-03 20:04:06,723 - MessageBroker - INFO - Agent Developer 订阅消息
+2025-01-03 20:04:40,501 - MessageBroker - DEBUG - 发布消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:04:40,502 - MessageBroker - DEBUG - 收到消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:07:29,887 - MessageBroker - INFO - 正在停止消息代理...
+2025-01-03 20:08:48,216 - MessageBroker - INFO - 消息代理启动
+2025-01-03 20:08:49,221 - MessageBroker - INFO - Agent Coordinator 订阅消息
+2025-01-03 20:08:49,222 - MessageBroker - INFO - Agent Product Manager 订阅消息
+2025-01-03 20:08:49,224 - MessageBroker - INFO - Agent Developer 订阅消息
+2025-01-03 20:09:04,549 - MessageBroker - DEBUG - 发布消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:09:04,551 - MessageBroker - DEBUG - 收到消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:12:04,562 - MessageBroker - INFO - 正在停止消息代理...
+2025-01-03 20:12:37,129 - MessageBroker - INFO - 消息代理启动
+2025-01-03 20:12:38,138 - MessageBroker - INFO - Agent Coordinator 订阅消息
+2025-01-03 20:12:38,141 - MessageBroker - INFO - Agent Product Manager 订阅消息
+2025-01-03 20:12:38,141 - MessageBroker - INFO - Agent Developer 订阅消息
+2025-01-03 20:12:49,387 - MessageBroker - DEBUG - 发布消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:12:49,388 - MessageBroker - DEBUG - 收到消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:13:00,082 - MessageBroker - DEBUG - 发布消息: MessageType.RESPONSE from DeveloperAgent to Coordinator
+2025-01-03 20:13:00,082 - MessageBroker - DEBUG - 收到消息: MessageType.RESPONSE from DeveloperAgent to Coordinator
+2025-01-03 20:13:12,301 - MessageBroker - INFO - 正在停止消息代理...
+2025-01-03 20:13:35,496 - MessageBroker - INFO - 消息代理启动
+2025-01-03 20:13:36,505 - MessageBroker - INFO - Agent Coordinator 订阅消息
+2025-01-03 20:13:36,506 - MessageBroker - INFO - Agent Product Manager 订阅消息
+2025-01-03 20:13:36,506 - MessageBroker - INFO - Agent Developer 订阅消息
+2025-01-03 20:13:55,971 - MessageBroker - DEBUG - 发布消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:13:55,972 - MessageBroker - DEBUG - 收到消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:14:03,567 - MessageBroker - DEBUG - 发布消息: MessageType.RESPONSE from DeveloperAgent to Coordinator
+2025-01-03 20:14:03,567 - MessageBroker - DEBUG - 收到消息: MessageType.RESPONSE from DeveloperAgent to Coordinator
+2025-01-03 20:16:56,001 - MessageBroker - INFO - 正在停止消息代理...
+2025-01-03 20:17:59,538 - MessageBroker - INFO - 消息代理启动
+2025-01-03 20:18:00,545 - MessageBroker - INFO - Agent Coordinator 订阅消息
+2025-01-03 20:18:00,545 - MessageBroker - INFO - Agent Product Manager 订阅消息
+2025-01-03 20:18:00,546 - MessageBroker - INFO - Agent Developer 订阅消息
+2025-01-03 20:18:09,208 - MessageBroker - DEBUG - 发布消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:18:09,209 - MessageBroker - DEBUG - 收到消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:21:09,230 - MessageBroker - INFO - 正在停止消息代理...
+2025-01-03 20:22:02,892 - MessageBroker - INFO - 消息代理启动
+2025-01-03 20:22:03,899 - MessageBroker - INFO - Agent Coordinator 订阅消息
+2025-01-03 20:22:03,900 - MessageBroker - INFO - Agent Product Manager 订阅消息
+2025-01-03 20:22:03,901 - MessageBroker - INFO - Agent Developer 订阅消息
+2025-01-03 20:22:08,754 - MessageBroker - DEBUG - 发布消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:22:08,755 - MessageBroker - DEBUG - 收到消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:24:26,301 - MessageBroker - INFO - 正在停止消息代理...
+2025-01-03 20:24:50,963 - MessageBroker - INFO - 消息代理启动
+2025-01-03 20:24:51,965 - MessageBroker - INFO - Agent Coordinator 订阅消息
+2025-01-03 20:24:51,966 - MessageBroker - INFO - Agent Product Manager 订阅消息
+2025-01-03 20:24:51,966 - MessageBroker - INFO - Agent Developer 订阅消息
+2025-01-03 20:24:57,022 - MessageBroker - DEBUG - 发布消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:24:57,022 - MessageBroker - DEBUG - 收到消息: MessageType.TASK from CoordinatorAgent to Developer
+2025-01-03 20:24:58,369 - MessageBroker - DEBUG - 发布消息: MessageType.RESPONSE from DeveloperAgent to Coordinator
+2025-01-03 20:24:58,369 - MessageBroker - DEBUG - 收到消息: MessageType.RESPONSE from DeveloperAgent to Coordinator

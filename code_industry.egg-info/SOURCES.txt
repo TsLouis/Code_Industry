@@ -1,0 +1,14 @@
+README.md
+setup.py
+adapters/__init__.py
+adapters/base/__init__.py
+adapters/base/interface.py
+adapters/base/types.py
+adapters/providers/__init__.py
+adapters/providers/anthropic.py
+adapters/providers/openai.py
+code_industry.egg-info/PKG-INFO
+code_industry.egg-info/SOURCES.txt
+code_industry.egg-info/dependency_links.txt
+code_industry.egg-info/requires.txt
+code_industry.egg-info/top_level.txt
