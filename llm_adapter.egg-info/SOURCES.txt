@@ -1,0 +1,7 @@
+README.md
+setup.py
+llm_adapter.egg-info/PKG-INFO
+llm_adapter.egg-info/SOURCES.txt
+llm_adapter.egg-info/dependency_links.txt
+llm_adapter.egg-info/requires.txt
+llm_adapter.egg-info/top_level.txt
