@@ -1,0 +1,10 @@
+{"timestamp": "2025-01-05T17:02:14.310525", "level": "DEBUG", "logger": "test", "message": "Debug message", "context": {"test": true}}
+{"timestamp": "2025-01-05T17:02:14.311561", "level": "INFO", "logger": "test", "message": "Info message", "extra": {"extra_field": "value"}}
+{"timestamp": "2025-01-05T17:02:14.311561", "level": "WARNING", "logger": "test", "message": "Warning message"}
+{"timestamp": "2025-01-05T17:02:14.312561", "level": "ERROR", "logger": "test", "message": "Error message", "context": {"error_code": 500}}
+{"timestamp": "2025-01-05T17:02:14.312561", "level": "ERROR", "logger": "test", "message": "Exception occurred", "context": {"error_type": "ValueError"}, "extra": {"exc_info": true}}
+{"timestamp": "2025-01-05T17:04:08.870889", "level": "DEBUG", "logger": "test", "message": "Debug message", "context": {"test": true}}
+{"timestamp": "2025-01-05T17:04:08.872885", "level": "INFO", "logger": "test", "message": "Info message", "extra": {"extra_field": "value"}}
+{"timestamp": "2025-01-05T17:04:08.873882", "level": "WARNING", "logger": "test", "message": "Warning message"}
+{"timestamp": "2025-01-05T17:04:08.873882", "level": "ERROR", "logger": "test", "message": "Error message", "context": {"error_code": 500}}
+{"timestamp": "2025-01-05T17:04:08.873882", "level": "ERROR", "logger": "test", "message": "Exception occurred", "context": {"error_type": "ValueError"}, "extra": {"exc_info": true}}

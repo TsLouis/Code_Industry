@@ -26,50 +26,48 @@ agents/
 class BaseAgent:
     """基础代理类"""
     
-    async def process(self, message: str, context: Optional[Dict[str, Any]] = None) -> AgentResponse:
+    async def process(self, message: str) -> AgentResponse:
         """处理输入消息并返回响应"""
         
-    async def plan(self, task: str, context: Optional[Dict[str, Any]] = None) -> AgentResponse:
+    async def plan(self, task: str) -> List[Task]:
         """规划任务的执行步骤"""
         
-    async def execute(self, plan: str, context: Optional[Dict[str, Any]] = None) -> AgentResponse:
+    async def execute(self, task: Task) -> ExecutionResult:
         """执行具体任务"""
 ```
 
 ### 代理角色
 
 1. 协调者 (Coordinator)
-   - 任务分析和分配
-   - 角色分配
-   - 工作流创建
-   - 进度监控
+   - 负责任务分解和分配
+   - 管理任务优先级
+   - 协调多个代理之间的合作
 
 2. 产品经理 (ProductManager)
-   - 需求分析
-   - 规格说明创建
-   - 用户故事生成
-   - 产品计划制定
-   - 开发初始化
+   - 分析和管理需求
+   - 创建产品规格说明
+   - 生成用户故事
+   - 跟踪开发进度
 
 3. 开发者 (Developer)
-   - 代码分析
-   - 解决方案实现
-   - 测试执行
-   - 代码审查
+   - 分析技术需求
+   - 创建技术设计
+   - 实现代码更改
+   - 执行测试
 
 ## 配置
 
 ### 代理配置
 
 ```python
-from src.agents.base.types import AgentConfig, AgentRole
+from code_industry.agents import AgentConfig
 
 config = AgentConfig(
-    role=AgentRole.DEVELOPER,     # 代理角色
-    llm_config={                  # LLM配置
+    role="developer",           # 代理角色
+    name="DevAgent",           # 代理名称
+    model_config={             # 模型配置
         "adapter": "openai",
-        "model": "gpt-4",
-        "api_key": "your-api-key"
+        "model": "gpt-3.5-turbo"
     }
 )
 ```
@@ -79,90 +77,73 @@ config = AgentConfig(
 ### 使用协调者代理
 
 ```python
-from src.agents.roles.coordinator import CoordinatorAgent
-from src.agents.base.types import AgentConfig, AgentRole
+from code_industry.agents import CoordinatorAgent
+from code_industry.agents.base import AgentConfig
 
 async def coordinator_example():
     config = AgentConfig(
-        role=AgentRole.COORDINATOR,
-        llm_config={
+        role="coordinator",
+        model_config={
             "adapter": "openai",
-            "model": "gpt-4",
-            "api_key": "your-api-key"
+            "model": "gpt-3.5-turbo"
         }
     )
     
     agent = CoordinatorAgent(config)
     
-    # 处理任务
+    # 处理复杂任务
     response = await agent.process(
-        "我需要开发一个新功能，包括前端界面和后端API"
+        "我需要开发一个电子商务网站，包括用户认证、商品管理和订单系统。"
     )
     
-    print(response.metadata)  # 输出任务分析和分配结果
+    print(response.tasks)  # 输出分解后的任务列表
 ```
 
 ### 使用产品经理代理
 
 ```python
-from src.agents.roles.product_manager import ProductManagerAgent
-from src.agents.base.types import AgentConfig, AgentRole
+from code_industry.agents import ProductManagerAgent
 
 async def pm_example():
-    config = AgentConfig(
-        role=AgentRole.PRODUCT_MANAGER,
-        llm_config={
-            "adapter": "openai",
-            "model": "gpt-4",
-            "api_key": "your-api-key"
-        }
-    )
-    
+    config = AgentConfig(role="product_manager")
     agent = ProductManagerAgent(config)
     
-    # 处理需求
+    # 分析需求
     response = await agent.process(
-        "设计一个用户注册功能"
+        "设计一个移动应用的用户注册流程"
     )
     
-    print(response.metadata)  # 输出需求分析和规格说明
+    print(response.specifications)  # 输出产品规格
 ```
 
 ### 使用开发者代理
 
 ```python
-from src.agents.roles.developer import DeveloperAgent
-from src.agents.base.types import AgentConfig, AgentRole
+from code_industry.agents import DeveloperAgent
 
 async def dev_example():
-    config = AgentConfig(
-        role=AgentRole.DEVELOPER,
-        llm_config={
-            "adapter": "openai",
-            "model": "gpt-4",
-            "api_key": "your-api-key"
-        }
-    )
-    
+    config = AgentConfig(role="developer")
     agent = DeveloperAgent(config)
     
-    # 处理开发任务
+    # 处理技术任务
     response = await agent.process(
-        "实现用户注册API"
+        "实现用户认证系统的后端 API"
     )
     
-    print(response.metadata)  # 输出代码分析和实现结果
+    print(response.technical_design)  # 输出技术设计
 ```
 
 ## 错误处理
 
 ```python
+from code_industry.agents.base import AgentError
+
 try:
     response = await agent.process("任务描述")
-except ValueError as e:
-    print(f"输入错误: {e}")
+except AgentError as e:
+    print(f"代理错误: {e}")
 except Exception as e:
-    print(f"处理错误: {e}")
+    print(f"其他错误: {e}")
 ```
 
 ## 扩展代理
@@ -170,21 +151,20 @@ except Exception as e:
 要创建新的代理角色，继承 `BaseAgent` 类并实现必要的方法：
 
 ```python
-from src.agents.base import BaseAgent
-from typing import Dict, Optional, Any
+from code_industry.agents.base import BaseAgent
 
 class CustomAgent(BaseAgent):
     """自定义代理"""
     
-    async def process(self, message: str, context: Optional[Dict[str, Any]] = None) -> AgentResponse:
+    async def process(self, message: str) -> AgentResponse:
         # 实现处理逻辑
         pass
     
-    async def plan(self, task: str, context: Optional[Dict[str, Any]] = None) -> AgentResponse:
+    async def plan(self, task: str) -> List[Task]:
         # 实现规划逻辑
         pass
     
-    async def execute(self, plan: str, context: Optional[Dict[str, Any]] = None) -> AgentResponse:
+    async def execute(self, task: Task) -> ExecutionResult:
         # 实现执行逻辑
         pass
 ``` 

@@ -28,13 +28,9 @@ class AgentConfig:
     
     def __init__(
         self,
-        role: AgentRole,           # 代理角色
-        llm_config: Dict[str, Any],  # LLM配置
+        role: str,                 # 代理角色
         name: Optional[str] = None,  # 代理名称
-        description: Optional[str] = None,  # 代理描述
-        instructions: Optional[str] = None,  # 代理指令
-        tools: Optional[List[str]] = None,  # 可用工具
-        metadata: Optional[Dict[str, Any]] = None  # 元数据
+        model_config: Optional[Dict] = None  # 模型配置
     ):
         pass
 ```
@@ -51,7 +47,7 @@ class Message:
         self,
         role: AgentRole,           # 发送者角色
         content: str,              # 消息内容
-        name: Optional[str] = None  # 发送者名称
+        metadata: Optional[Dict] = None  # 元数据
     ):
         pass
 ```
@@ -67,8 +63,8 @@ class AgentResponse:
     def __init__(
         self,
         response: str,             # 响应内容
-        metadata: Optional[Dict[str, Any]] = None,  # 元数据
-        error: Optional[str] = None  # 错误信息
+        status: str,               # 状态
+        metadata: Optional[Dict] = None  # 元数据
     ):
         pass
 ```
@@ -91,48 +87,36 @@ class BaseAgent:
         """
         pass
     
-    async def process(self, message: str, context: Optional[Dict[str, Any]] = None) -> AgentResponse:
+    async def process(self, message: str) -> AgentResponse:
         """处理输入消息
         
         Args:
             message: 输入消息
-            context: 上下文信息
             
         Returns:
             AgentResponse: 代理响应
-            
-        Raises:
-            ValueError: 当输入消息为空时
         """
         pass
     
-    async def plan(self, task: str, context: Optional[Dict[str, Any]] = None) -> AgentResponse:
+    async def plan(self, task: str) -> List[Task]:
         """规划任务
         
         Args:
             task: 任务描述
-            context: 上下文信息
             
         Returns:
-            AgentResponse: 规划结果
-            
-        Raises:
-            ValueError: 当任务描述为空时
+            List[Task]: 任务列表
         """
         pass
     
-    async def execute(self, plan: str, context: Optional[Dict[str, Any]] = None) -> AgentResponse:
+    async def execute(self, task: Task) -> ExecutionResult:
         """执行任务
         
         Args:
-            plan: 执行计划
-            context: 上下文信息
+            task: 要执行的任务
             
         Returns:
-            AgentResponse: 执行结果
-            
-        Raises:
-            ValueError: 当执行计划为空时
+            ExecutionResult: 执行结果
         """
         pass
 ```
@@ -149,24 +133,24 @@ class BaseAgent:
 class CoordinatorAgent(BaseAgent):
     """协调者代理"""
     
-    async def process(self, message: str, context: Optional[Dict[str, Any]] = None) -> AgentResponse:
+    async def process(self, message: str) -> AgentResponse:
         """处理协调请求"""
         pass
     
-    async def _analyze_task(self, task: str) -> Dict[str, Any]:
-        """分析任务"""
+    async def _decompose_task(self, task: str) -> List[Task]:
+        """分解任务"""
         pass
     
-    async def _assign_roles(self, task_analysis: Dict[str, Any]) -> List[str]:
-        """分配角色"""
+    async def _calculate_priority(self, task: Task) -> int:
+        """计算任务优先级"""
         pass
     
-    async def _create_workflow(self, role_assignments: List[str]) -> Dict[str, Any]:
-        """创建工作流"""
+    async def _identify_dependencies(self, tasks: List[Task]) -> Dict[str, List[str]]:
+        """识别任务依赖"""
         pass
     
-    async def _monitor_progress(self, workflow: Dict[str, Any]) -> Dict[str, Any]:
-        """监控进度"""
+    async def _estimate_time(self, task: Task) -> int:
+        """估算任务时间"""
         pass
 ```
 
@@ -180,11 +164,11 @@ class CoordinatorAgent(BaseAgent):
 class ProductManagerAgent(BaseAgent):
     """产品经理代理"""
     
-    async def process(self, message: str, context: Optional[Dict[str, Any]] = None) -> AgentResponse:
+    async def process(self, message: str) -> AgentResponse:
         """处理产品需求"""
         pass
     
-    async def _analyze_requirements(self, message: str) -> List[Requirement]:
+    async def _analyze_requirements(self, requirements: str) -> List[Requirement]:
         """分析需求"""
         pass
     
@@ -192,16 +176,8 @@ class ProductManagerAgent(BaseAgent):
         """创建规格说明"""
         pass
     
-    async def _generate_user_stories(self, specs: Specifications) -> List[UserStory]:
+    async def _generate_user_stories(self, specifications: Specifications) -> List[UserStory]:
         """生成用户故事"""
-        pass
-    
-    async def _create_product_plan(self, stories: List[UserStory]) -> Dict[str, Any]:
-        """创建产品计划"""
-        pass
-    
-    async def _initialize_development(self, plan: Dict[str, Any]) -> Dict[str, Any]:
-        """初始化开发"""
         pass
 ```
 
@@ -215,24 +191,24 @@ class ProductManagerAgent(BaseAgent):
 class DeveloperAgent(BaseAgent):
     """开发者代理"""
     
-    async def process(self, message: str, context: Optional[Dict[str, Any]] = None) -> AgentResponse:
+    async def process(self, message: str) -> AgentResponse:
         """处理开发任务"""
         pass
     
-    async def _analyze_code(self, code: str) -> Dict[str, Any]:
-        """分析代码"""
+    async def _analyze_technical_requirements(self, requirements: str) -> List[TechnicalRequirement]:
+        """分析技术需求"""
         pass
     
-    async def _implement_solution(self, analysis: Dict[str, Any]) -> List[str]:
-        """实现解决方案"""
+    async def _create_technical_design(self, requirements: List[TechnicalRequirement]) -> TechnicalDesign:
+        """创建技术设计"""
         pass
     
-    async def _test_implementation(self, implementation: List[str]) -> Dict[str, Any]:
-        """测试实现"""
+    async def _plan_implementation(self, design: TechnicalDesign) -> List[ImplementationStep]:
+        """规划实现步骤"""
         pass
     
-    async def _review_code(self, implementation: Dict[str, Any]) -> Dict[str, Any]:
-        """代码审查"""
+    async def _implement_changes(self, steps: List[ImplementationStep]) -> List[CodeChange]:
+        """实现代码更改"""
         pass
 ```
 
@@ -240,25 +216,64 @@ class DeveloperAgent(BaseAgent):
 
 ### llm.py
 
-LLM 工具类：
+LLM 工具函数：
 
 ```python
-class LLMTool:
-    """LLM 工具类"""
+async def generate_response(prompt: str, config: Dict) -> str:
+    """生成 LLM 响应
     
-    def __init__(self, adapter: str):
-        """初始化 LLM 工具
+    Args:
+        prompt: 提示文本
+        config: LLM 配置
         
-        Args:
-            adapter: LLM 适配器名称
-        """
-        pass
+    Returns:
+        str: 生成的响应
+    """
+    pass
+
+async def analyze_intent(message: str) -> Dict:
+    """分析消息意图
     
-    async def analyze_intent(self, message: str) -> Dict[str, Any]:
-        """分析消息意图"""
-        pass
+    Args:
+        message: 输入消息
+        
+    Returns:
+        Dict: 意图分析结果
+    """
+    pass
+
+async def calculate_priority(task: str) -> Dict:
+    """计算任务优先级
     
-    async def analyze_task_type(self, task: str) -> str:
-        """分析任务类型"""
-        pass
+    Args:
+        task: 任务描述
+        
+    Returns:
+        Dict: 优先级分析结果
+    """
+    pass
+```
+
+## 异常类型
+
+### AgentError
+
+代理错误基类：
+
+```python
+class AgentError(Exception):
+    """代理错误基类"""
+    pass
+
+class ConfigurationError(AgentError):
+    """配置错误"""
+    pass
+
+class ProcessingError(AgentError):
+    """处理错误"""
+    pass
+
+class ExecutionError(AgentError):
+    """执行错误"""
+    pass
 ``` 
