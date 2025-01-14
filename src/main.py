@@ -64,13 +64,44 @@ async def main():
                 logging.info(f"失败步骤数: {result['failure_count']}")
                 
                 if result['status'] == 'completed':
-                    logging.info("任务结果:")
-                    for key, value in result['results'].items():
-                        logging.info(f"- {key}: {value}")
+                    logging.info("\n=== 任务执行结果 ===")
+                    
+                    # 显示协调者输出
+                    logging.info("\n--- 协调者输出 ---")
+                    coordinator_results = {k: v for k, v in result['results'].items() if k.startswith('coordinator_')}
+                    for key, value in coordinator_results.items():
+                        logging.info(f"- {key}:")
+                        logging.info(f"  {value}")
+                    
+                    # 显示产品经理输出
+                    logging.info("\n--- 产品经理输出 ---")
+                    pm_results = {k: v for k, v in result['results'].items() if k.startswith('product_manager_')}
+                    for key, value in pm_results.items():
+                        logging.info(f"- {key}:")
+                        logging.info(f"  {value}")
+                    
+                    # 显示开发者输出
+                    logging.info("\n--- 开发者输出 ---")
+                    dev_results = {k: v for k, v in result['results'].items() if k.startswith('developer_')}
+                    for key, value in dev_results.items():
+                        logging.info(f"- {key}:")
+                        logging.info(f"  {value}")
+                    
+                    # 显示生成的文件位置
+                    if 'saved_files' in result['results'].get('developer_process', {}):
+                        logging.info(f"\n生成的文件保存在: {result['results']['developer_process']['saved_files']}")
+                    
+                    # 显示任务执行历史
+                    logging.info("\n--- 执行历史 ---")
+                    for entry in result['history']:
+                        logging.info(f"- {entry['stage']} ({entry['timestamp']})")
                 else:
-                    logging.warning("任务执行部分失败，错误信息:")
+                    logging.warning("\n任务执行部分失败，错误信息:")
                     for key, error in result['errors'].items():
                         logging.error(f"- {key}: {error}")
+                        
+                # 显示监控信息位置
+                logging.info(f"\n详细的Agent输出和监控信息保存在: output/agent_outputs/{result['task_id']}/")
                         
             except KeyboardInterrupt:
                 logging.info("\n收到中断信号，正在退出...")

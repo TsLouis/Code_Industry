@@ -136,7 +136,52 @@ class Engine:
         # 4. 整合结果
         final_result = await self._integrate_results(result, context)
         
+        # 5. 保存所有Agent的输出到output目录
+        await self._save_agent_outputs(context)
+        
         return final_result
+        
+    async def _save_agent_outputs(self, context: TaskContext) -> None:
+        """保存所有Agent的输出到文件"""
+        from pathlib import Path
+        import json
+        import os
+        
+        # 创建输出目录
+        output_dir = Path("output/agent_outputs") / context.task_id
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # 保存协调者Agent的输出
+        coordinator_output = {
+            "analysis": context.state.get("analysis", {}),
+            "coordinator_process": context.state.get("coordinator_process", {})
+        }
+        with open(output_dir / "coordinator_output.json", "w", encoding="utf-8") as f:
+            json.dump(coordinator_output, f, ensure_ascii=False, indent=2)
+            
+        # 保存产品经理Agent的输出
+        pm_output = {
+            key: value for key, value in context.state.items()
+            if key.startswith("product_manager_")
+        }
+        with open(output_dir / "product_manager_output.json", "w", encoding="utf-8") as f:
+            json.dump(pm_output, f, ensure_ascii=False, indent=2)
+            
+        # 保存开发者Agent的输出
+        dev_output = {
+            key: value for key, value in context.state.items()
+            if key.startswith("developer_")
+        }
+        with open(output_dir / "developer_output.json", "w", encoding="utf-8") as f:
+            json.dump(dev_output, f, ensure_ascii=False, indent=2)
+            
+        # 保存完整的执行历史
+        history_output = {
+            "history": context.history,
+            "execution_time": (datetime.now() - context.start_time).total_seconds()
+        }
+        with open(output_dir / "execution_history.json", "w", encoding="utf-8") as f:
+            json.dump(history_output, f, ensure_ascii=False, indent=2)
         
     async def _analyze_task(self, context: TaskContext) -> Dict[str, Any]:
         """分析任务，确定需要的Agent和执行步骤"""
@@ -176,38 +221,69 @@ class Engine:
         # 根据任务规格创建执行计划
         plan = []
         
-        # 1. 产品需求分析
-        if task_spec.get("needs_requirements_analysis", True):
-            plan.append({
-                "agent": "product_manager",
-                "action": "analyze_requirements",
-                "parameters": task_spec
-            })
-            
-        # 2. 技术方案设计
-        if task_spec.get("needs_technical_design", True):
-            plan.append({
-                "agent": "developer",
-                "action": "create_technical_design",
-                "parameters": task_spec
-            })
-            
-        # 3. 实现步骤
-        if task_spec.get("needs_implementation", True):
-            plan.append({
-                "agent": "developer",
-                "action": "implement",
-                "parameters": task_spec
-            })
-            
-        # 4. 测试验证
-        if task_spec.get("needs_testing", True):
-            plan.append({
-                "agent": "developer",
-                "action": "test",
-                "parameters": task_spec
-            })
-            
+        # 1. 协调者分析和规划
+        plan.append({
+            "agent": "coordinator",
+            "action": "plan",
+            "parameters": task_spec
+        })
+        
+        # 2. 产品需求分析
+        plan.append({
+            "agent": "product_manager",
+            "action": "analyze_requirements",
+            "parameters": task_spec
+        })
+        
+        # 3. 产品规格说明
+        plan.append({
+            "agent": "product_manager",
+            "action": "create_specifications",
+            "parameters": task_spec
+        })
+        
+        # 4. 用户故事生成
+        plan.append({
+            "agent": "product_manager",
+            "action": "generate_user_stories",
+            "parameters": task_spec
+        })
+        
+        # 5. 技术方案设计
+        plan.append({
+            "agent": "developer",
+            "action": "analyze_code",
+            "parameters": task_spec
+        })
+        
+        # 6. 代码实现
+        plan.append({
+            "agent": "developer",
+            "action": "implement_solution",
+            "parameters": task_spec
+        })
+        
+        # 7. 测试实现
+        plan.append({
+            "agent": "developer",
+            "action": "test_implementation",
+            "parameters": task_spec
+        })
+        
+        # 8. 代码审查
+        plan.append({
+            "agent": "developer",
+            "action": "review_code",
+            "parameters": task_spec
+        })
+        
+        # 9. 协调者最终审查
+        plan.append({
+            "agent": "coordinator",
+            "action": "review",
+            "parameters": task_spec
+        })
+        
         return plan
         
     async def _execute_plan(self, plan: List[Dict[str, Any]], context: TaskContext) -> List[Dict[str, Any]]:

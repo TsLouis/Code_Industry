@@ -1,0 +1,20 @@
+{
+  "product_manager_analyze_requirements": {
+    "content": "产品需求已分析完成",
+    "role": "assistant",
+    "model": "gpt-3.5-turbo",
+    "usage": {}
+  },
+  "product_manager_create_specifications": {
+    "content": "产品需求已分析完成",
+    "role": "assistant",
+    "model": "gpt-3.5-turbo",
+    "usage": {}
+  },
+  "product_manager_generate_user_stories": {
+    "content": "产品需求已分析完成",
+    "role": "assistant",
+    "model": "gpt-3.5-turbo",
+    "usage": {}
+  }
+}
